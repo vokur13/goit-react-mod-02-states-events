@@ -11,7 +11,8 @@ class Counter extends Component {
 
   static propTypes = {};
 
-  state = { value: this.props.initialValue };
+        state = { value: this.props.initialValue };
+        
   handleIncrement = () => {
     this.setState(prevState => ({ value: prevState.value + 1 }));
   };
