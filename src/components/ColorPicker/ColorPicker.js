@@ -1,9 +1,38 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import './ColorPicker.css';
 
-class ColorPicker extends Component {
+export const ColorPicker = ({ options }) => {
+  const [activeOptionIdx, setactiveOptionIdx] = useState(0);
+
+  const setActiveIdx = index => {
+    setactiveOptionIdx(index);
+  };
+
+  return (
+    <div className="ColorPicker">
+      <h2 className="ColorPicker__title">Color Picker</h2>
+      {/* <p>Выбран цвет: {label} </p> */}
+      <div>
+        {options.map(({ label, color }, index) => (
+          <button
+            key={label}
+            className={this.makeOptionClassName(index)}
+            style={{
+              backgroundColor: color,
+            }}
+            onClick={() => {
+              this.setActiveIdx(index);
+            }}
+          ></button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+class ProtoColorPicker extends Component {
   state = {
-    activeOptionIdx: 1,
+    activeOptionIdx: 0,
   };
 
   setActiveIdx(index) {
@@ -88,4 +117,4 @@ class ColorPicker extends Component {
 //   }
 // }
 
-export default ColorPicker;
+// export default ColorPicker;
