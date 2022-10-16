@@ -1,28 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import Controls from './Controls';
 import { Value } from './Value';
 import './Counter.css';
 
+function countReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + action.payload };
+    case 'decrement':
+      return { ...state, count: state.count - action.payload };
+    default:
+      throw new Error(`Unsupported action action type ${action.type}`);
+  }
+}
+
+function init(initialState) {
+  return { ...initialState, count: initialState.count + 100 };
+}
+
 export const Counter = () => {
   const step = 1;
-  const initialValue = 0;
+  const initialValue = { count: 0 };
 
-  const [value, setValue] = useState(initialValue);
+  //   const [value, setValue] = useState(initialValue);
+  const [state, dispatch] = useReducer(countReducer, initialValue, init);
 
   const handleIncrement = () => {
-    setValue(prevState => prevState + step);
+    dispatch({ type: 'increment', payload: step });
   };
   const handleDecrement = () => {
-    setValue(prevState => prevState - step);
+    dispatch({ type: 'decrement', payload: step });
   };
 
   useEffect(() => {
     console.log('Start useEffect');
-  }, [value]);
+  }, [state.count]);
 
   return (
     <div className="Counter">
-      <Value value={value} />
+      <Value value={state.count} />
       <Controls onDecrement={handleDecrement} onIncrement={handleIncrement} />
     </div>
   );
