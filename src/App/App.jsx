@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import styled from 'styled-components';
 // import { Box } from 'components/Box/Box.styled';
-// import Counter from 'components/Counter/Counter';
+import Counter from 'components/Counter/Counter';
 // import Dropdown from 'components/Dropdown';
 import { ColorPicker } from 'components/ColorPicker/ColorPicker';
 import { TodoList } from 'components/TodoList';
@@ -37,9 +37,9 @@ class App extends Component {
     return (
       <>
         <h1>Состояние Компонента</h1>
-        {/* <Counter initialValue={5} /> */}
+        <Counter initialValue={5} />
         {/* <Dropdown /> */}
-        <ColorPicker options={colorPickerOptions} />
+        {/* <ColorPicker options={colorPickerOptions} /> */}
         {/* <div>
           <p>Total ToDo quantity: {totalTodoCount}</p>
           <p>Total completed: {completedTodosCount}</p>
